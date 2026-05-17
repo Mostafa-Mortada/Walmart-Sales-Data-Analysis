@@ -12,25 +12,9 @@
 [![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow?logo=powerbi&logoColor=white)](https://powerbi.microsoft.com)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter&logoColor=white)](https://jupyter.org)
 
----
 
-**Ain Shams University · Faculty of Computer and Information Systems**  
-Business Intelligence Course · Team 23
 
 </div>
-
----
-
-## 👥 Team Members
-
-| # | Name |
-|---|------|
-| 01 | Moustafa Mortada Mohamed |
-| 02 | Ammar Mohamed Ali |
-| 03 | Omar Karm Sayed |
-| 04 | Sara Mohsen Mohamed |
-| 05 | Nada Mohamed Mahmoud |
-| 06 | Hadeel Mohamed Thabet |
 
 ---
 
@@ -44,13 +28,13 @@ This project analyzes Walmart's transactional sales data to uncover business ins
 
 ```
 walmart-sales-analysis/
-│
+│── Walmart Sales Analysis.pptx  # Presentation
 ├── walmart_sales_Final.ipynb    # Main notebook (EDA + ML + Time Series)
-├── cover.html                   # Project cover page
 ├── README.md                    # Project documentation
-│
+├── 
 ├── data/
 │   └── walmart_sales.csv        # Dataset
+|       Ready for Visualization.csv   # Data after preprocessing to use in Visualization       
 │
 └── powerbi/
     └── walmart_dashboard.pbix   # Power BI dashboard file
@@ -73,6 +57,8 @@ Time Series Analysis & Forecasting
    ↓
 Random Forest Regressor (Sales Prediction)
    ↓
+Xgboost (Sales Prediction)
+   ↓
 Power BI Dashboard (Business Insights)
 ```
 
@@ -82,16 +68,15 @@ Power BI Dashboard (Business Insights)
 
 **Source:** Walmart Superstore Transactional Data  
 **Records:** 9,994 orders  
-**Features:** 26 columns including:
+**Features:** 21 columns including:
 
 | Category | Features |
 |----------|----------|
-| Order Info | Order ID, Order Date, Ship Date, Ship Mode, Duration |
+| Order Info | Order ID, Order Date, Ship Date, Ship Mode |
 | Customer | Customer ID, Name, Segment |
 | Location | City, State, Region, Country |
 | Product | Product ID, Name, Category, Sub-Category |
 | Financials | Sales, Quantity, Discount, Profit |
-| Engineered | Day of Week, Order Month, Order Year, Month Name |
 
 ---
 
@@ -134,9 +119,7 @@ Used **IQR (Interquartile Range)** method across key numerical columns:
 **Target Variable:** `Sales`
 
 **Key Decisions:**
-- `Profit` dropped — derived directly from Sales (data leakage)
-- `Ship Mode` → ordinal encoded (speed order: Second Class → Same Day)
-- Nominal columns → One-Hot encoded (`Segment`, `Region`, `Category`, etc.)
+- Nominal columns → One-Hot encoded (`Segment`, `Region`, `Category`,`Ship Mode`)
 - High-cardinality ID columns dropped (`Order ID`, `Customer ID`, `Product ID`, etc.)
 
 **Model Configuration:**
@@ -155,9 +138,25 @@ RandomForestRegressor(
 
 | Metric | Score |
 |--------|-------|
-| MAE | — |
-| RMSE | — |
-| R² | — |
+| MAE | 54.1592 |
+| RMSE | 77.1283 |
+| R² | 0.7906 |
+
+---
+
+```python
+xgb = XGBRegressor(n_estimators=200,
+learning_rate=0.1,
+max_depth=6)
+```
+
+**Evaluation Metrics:**
+
+| Metric | Score |
+|--------|-------|
+| MAE | 36.0403 |
+| RMSE | 65.9842 |
+| R² | 0.8468 |
 
 ---
 
@@ -200,17 +199,8 @@ pip install pandas numpy matplotlib seaborn scikit-learn jupyter
 # 3. Launch notebook
 jupyter notebook walmart_sales_Final.ipynb
 
-# 4. View cover page
-open cover.html
 ```
 
----
-
-## 📋 To Display the Cover Page in Jupyter
-
-The notebook includes a built-in HTML cover page. Run the first cell in `walmart_sales_Final.ipynb` to render it directly inside the notebook.
-
----
 
 <div align="center">
 

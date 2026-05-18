@@ -203,8 +203,7 @@ jupyter notebook walmart_sales_Final.ipynb
 
 
 <div align="center">
-
-**Ain Shams University · Business Intelligence · 2025**  
-Team 23 · Walmart Sales Analysis & Forecasting
+ 
+ **Walmart Sales Analysis & Forecasting 2026**  
 
 </div>

@@ -24,46 +24,6 @@ This project analyzes Walmart's transactional sales data to uncover business ins
 
 ---
 
-## 🗂 Project Structure
-
-```
-walmart-sales-analysis/
-│── Walmart Sales Analysis.pptx  # Presentation
-├── walmart_sales_Final.ipynb    # Main notebook (EDA + ML + Time Series)
-├── README.md                    # Project documentation
-├── 
-├── data/
-│   └── walmart_sales.csv        # Dataset
-|       Ready for Visualization.csv   # Data after preprocessing to use in Visualization       
-│
-└── powerbi/
-    └── walmart_dashboard.pbix   # Power BI dashboard file
-```
-
----
-
-## 🔄 Project Pipeline
-
-```
-Raw Data
-   ↓
-Exploratory Data Analysis (EDA)
-   ↓
-Outlier Detection & Treatment (IQR)
-   ↓
-Feature Engineering & Encoding
-   ↓
-Time Series Analysis & Forecasting
-   ↓
-Random Forest Regressor (Sales Prediction)
-   ↓
-Xgboost (Sales Prediction)
-   ↓
-Power BI Dashboard (Business Insights)
-```
-
----
-
 ## 📊 Dataset
 
 **Source:** Walmart Superstore Transactional Data  
@@ -90,6 +50,61 @@ Power BI Dashboard (Business Insights)
 
 ---
 
+## 📈 Power BI Dashboard
+
+Interactive dashboard covering:
+
+- 📦 Sales by Category & Sub-Category
+- 🗺 Regional Sales Map
+- 📅 Monthly Sales Trend
+- 💰 Profit vs Discount Analysis
+- 🚚 Shipping Mode Performance
+- 👥 Customer Segment Breakdown
+
+### 📸 Dashboard Preview
+
+![Walmart Power BI Dashboard](Powerbi/Dashboard01.png)
+
+### 📸 Influencing Factors
+
+![Influencing Factors](Powerbi/Influencing_Factors.png)
+
+---
+
+## 💡 Key Business Insights
+
+> Derived from the Power BI dashboard analysis.
+
+### 🏆 Top Performing Category & Segment
+
+| Dimension | Leader | Total Sales |
+|-----------|--------|-------------|
+| Product Category | Technology | $836,154 |
+| Customer Segment | Consumer | $1,161,401 |
+
+---
+
+### 📍 Top Performing Locations
+
+**By Region**
+
+| Region | Sales | Profit |
+|--------|-------|--------|
+| 🥇 West | $725,457 | $108,418 |
+
+**By State**
+
+| State | Sales | Profit |
+|-------|-------|--------|
+| 🥇 California | $457,687 | $76,381 |
+
+**By City**
+
+| City | Sales | Profit |
+|------|-------|--------|
+| 🥇 New York City | $256,368 | $62,036 |
+
+---
 ## 🚨 Outlier Detection & Treatment
 
 Used **IQR (Interquartile Range)** method across key numerical columns:
@@ -105,12 +120,25 @@ Used **IQR (Interquartile Range)** method across key numerical columns:
 
 ---
 
-## ⏳ Time Series Analysis
+## ⏳ Time Series Analysis — ARIMA Forecasting
 
+Sales data was aggregated monthly and modeled using **ARIMA** to capture historical trends and generate a forward-looking forecast.
+
+**What was done:**
 - Monthly and yearly sales trend decomposition
 - Seasonality detection across order months
-- Sales forecasting using time-based features
-- Peak sales period identification
+- Peak sales period identification (Q4 spikes visible across all years)
+- 6-month future sales forecast beyond the historical data window
+
+**Model:** ARIMA (Auto-Regressive Integrated Moving Average)  
+**Historical Range:** January 2014 – January 2018  
+**Forecast Horizon:** 6 months (up to July 2018)
+
+### 📈 ARIMA Forecast Chart
+
+![Walmart Sales Forecast using ARIMA](Images/arima_forecast.png)
+
+> The red line shows the ARIMA model fit on historical data, while the green dashed line projects the next 6 months of expected sales. The model captures the overall upward trend and seasonal fluctuations effectively.
 
 ---
 
@@ -160,19 +188,6 @@ max_depth=6)
 
 ---
 
-## 📈 Power BI Dashboard
-
-Interactive dashboard covering:
-
-- 📦 Sales by Category & Sub-Category
-- 🗺 Regional Sales Map
-- 📅 Monthly Sales Trend
-- 💰 Profit vs Discount Analysis
-- 🚚 Shipping Mode Performance
-- 👥 Customer Segment Breakdown
-
----
-
 ## 🛠 Tech Stack
 
 | Tool | Purpose |
@@ -183,6 +198,46 @@ Interactive dashboard covering:
 | Scikit-learn | Machine learning |
 | Power BI | Business dashboard |
 | Jupyter Notebook | Development environment |
+
+---
+
+## 🗂 Project Structure
+
+```
+walmart-sales-analysis/
+│── Walmart Sales Analysis.pptx  # Presentation
+├── walmart_sales_Final.ipynb    # Main notebook (EDA + ML + Time Series)
+├── README.md                    # Project documentation
+├── 
+├── data/
+│   └── walmart_sales.csv        # Dataset
+|       Ready for Visualization.csv   # Data after preprocessing to use in Visualization       
+│
+└── powerbi/
+    └── walmart_dashboard.pbix   # Power BI dashboard file
+```
+
+---
+
+## 🔄 Project Pipeline
+
+```
+Raw Data
+   ↓
+Exploratory Data Analysis (EDA)
+   ↓
+Outlier Detection & Treatment (IQR)
+   ↓
+Feature Engineering & Encoding
+   ↓
+Time Series Analysis & ARIMA Forecasting (6-Month Horizon)
+   ↓
+Random Forest Regressor (Sales Prediction)
+   ↓
+Xgboost (Sales Prediction)
+   ↓
+Power BI Dashboard (Business Insights)
+```
 
 ---
 
